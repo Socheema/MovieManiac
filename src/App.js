@@ -19,13 +19,16 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${url}&s=${title}`);
+    const response = await fetch(`${url}&s=${title}`, {
+      // ...
+      referrerPolicy: "unsafe_url",
+    });
     const data = await response.json();
     setMovies(data.Search);
     console.log(data);
   };
   useEffect(() => {
-    searchMovies('spiderman');
+    searchMovies("spiderman");
   }, []);
   return (
     <div className="app">
@@ -48,7 +51,7 @@ const App = () => {
       {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
-            <MovieCard movie={movie} key={movie.Title}/>
+            <MovieCard movie={movie} key={movie.Title} />
           ))}
         </div>
       ) : (
