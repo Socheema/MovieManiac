@@ -19,10 +19,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${url}&s=${title}`, {
-      // ...
-      referrerPolicy: "unsafe_url",
-    });
+    const response = await fetch(`${url}&s=${title}`);
     const data = await response.json();
     setMovies(data.Search);
     console.log(data);
